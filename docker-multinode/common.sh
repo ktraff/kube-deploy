@@ -68,7 +68,9 @@ kube::multinode::main(){
   ETCD_NET_PARAM="--net host"
 
   if [[ ${USE_CONTAINERIZED} == "true" ]]; then
-    ROOTFS_MOUNT="-v /:/rootfs:ro"
+    ROOTFS_MOUNT="-v /:/rootfs:ro \
+                  -v /lib/modules:/lib/modules:ro \
+                  -v /etc/ceph:/etc/ceph:rw"
     KUBELET_MOUNT="-v /var/lib/kubelet:/var/lib/kubelet:slave"
     CONTAINERIZED_FLAG="--containerized"
   else
