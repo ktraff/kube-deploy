@@ -69,6 +69,7 @@ kube::multinode::main(){
 
   if [[ ${USE_CONTAINERIZED} == "true" ]]; then
     ROOTFS_MOUNT="-v /:/rootfs:ro \
+                  -v /sbin/modprobe:/sbin/modprobe:ro \
                   -v /lib/modules:/lib/modules:ro \
                   -v /etc/ceph:/etc/ceph:rw"
     KUBELET_MOUNT="-v /var/lib/kubelet:/var/lib/kubelet:slave"
